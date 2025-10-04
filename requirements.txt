@@ -1,0 +1,87 @@
+# QoS Traffic Shaper Requirements
+
+# Web Framework
+Flask==3.0.0
+Flask-SocketIO==5.3.6
+Flask-CORS==4.0.0
+
+# Network and System Monitoring
+psutil==5.9.8
+scapy==2.5.0
+netmiko==4.3.0
+
+# Data Processing and Analysis
+numpy==1.26.0
+pandas==2.1.0
+scipy==1.11.0
+
+# Template Engine
+Jinja2==3.1.2
+
+# Database and Caching
+redis==5.0.1
+
+# Configuration Management
+PyYAML==6.0.1
+
+# Logging and Monitoring
+python-json-logger==2.0.7
+
+# Network Protocol Support
+paramiko==3.3.1
+pexpect==4.8.0
+
+# Time and Date Utilities
+python-dateutil==2.8.2
+
+# HTTP Client
+requests==2.31.0
+
+# Environment Management
+python-dotenv==1.0.0
+
+# Development and Testing (optional)
+pytest==7.4.0
+pytest-cov==4.1.0
+flake8==6.1.0
+black==23.9.1
+
+# Documentation (optional)
+mkdocs==1.5.3
+mkdocs-material==9.4.2
+
+# Performance Monitoring
+prometheus-client==0.17.1
+
+# Additional Network Tools
+ipaddress==1.0.23
+netaddr==0.9.0
+
+# Threading and Async Support
+threading-extensions==0.1.0
+
+# JSON Schema Validation
+jsonschema==4.19.0
+
+# Mathematical Computations
+sympy==1.12
+
+# System Information
+platform-detection==1.0.0
+
+# Traffic Analysis
+matplotlib==3.8.0
+seaborn==0.12.2
+
+# API Documentation
+flask-restx==1.2.0
+
+# Security
+cryptography==41.0.4
+bcrypt==4.0.1
+
+# Monitoring and Alerting
+alertmanager-api==0.1.0
+
+# Configuration Parsing
+configparser==6.0.0

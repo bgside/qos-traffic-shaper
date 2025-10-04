@@ -1,0 +1,235 @@
+# QoS Traffic Shaper Configuration
+
+# Server Configuration
+server:
+  host: "0.0.0.0"
+  port: 5000
+  debug: true
+  threaded: true
+  max_connections: 100
+
+# Database Configuration
+database:
+  redis:
+    host: "localhost"
+    port: 6379
+    db: 0
+    password: null
+    decode_responses: true
+
+# Network Monitoring Configuration
+monitoring:
+  # Traffic Analysis
+  traffic_analysis:
+    interface: null  # Auto-detect if null
+    capture_filter: ""
+    max_flows: 10000
+    flow_timeout_minutes: 30
+    packet_sample_rate: 1.0
+    
+  # Bandwidth Monitoring
+  bandwidth:
+    monitoring_interval: 5  # seconds
+    history_retention_hours: 24
+    utilization_threshold: 80  # percent
+    
+  # Network Health
+  network_health:
+    ping_targets:
+      - "8.8.8.8"
+      - "1.1.1.1"
+      - "208.67.222.222"
+    ping_interval: 30  # seconds
+    latency_thresholds:
+      good: 50      # ms
+      degraded: 150 # ms
+      poor: 500     # ms
+    packet_loss_threshold: 2.0  # percent
+
+# QoS Policy Configuration
+qos:
+  # Default Policies
+  default_policies:
+    high_priority:
+      - "VoIP"
+      - "Video Conferencing"
+      - "RDP"
+      - "SSH"
+    medium_priority:
+      - "HTTP"
+      - "HTTPS"
+      - "DNS"
+      - "SMTP"
+    low_priority:
+      - "FTP"
+      - "BitTorrent"
+      - "Backup"
+      - "Bulk Transfer"
+  
+  # Bandwidth Allocation
+  bandwidth_allocation:
+    default_interface_speed: 100  # Mbps
+    reserve_percentage: 10        # Reserve 10% for management
+    burst_multiplier: 1.5         # Allow 50% burst above allocated
+    
+  # Traffic Shaping
+  traffic_shaping:
+    enabled: true
+    queue_algorithm: "htb"  # Hierarchical Token Bucket
+    default_class: "1:30"
+    classes:
+      high: "1:10"
+      medium: "1:20"
+      normal: "1:30"
+      low: "1:40"
+
+# Optimization Configuration
+optimization:
+  # Analysis Settings
+  analysis:
+    interval: 60              # seconds
+    min_data_points: 10
+    history_retention: 1000   # data points
+    
+  # Thresholds for Recommendations
+  thresholds:
+    bandwidth_utilization: 80.0   # percent
+    latency_threshold: 150.0      # ms
+    packet_loss_threshold: 2.0    # percent
+    error_rate_threshold: 0.1     # percent
+    
+  # Recommendation Settings
+  recommendations:
+    max_active: 50
+    auto_apply_safe: false
+    confidence_threshold: 0.7
+    priority_weights:
+      impact: 0.4
+      effort: 0.3
+      confidence: 0.3
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/qos_traffic_shaper.log"
+  max_size: "10MB"
+  backup_count: 5
+  handlers:
+    - console
+    - file
+
+# Security Configuration
+security:
+  # Authentication (if needed)
+  authentication:
+    enabled: false
+    method: "basic"  # basic, token, oauth
+    
+  # API Security
+  api:
+    rate_limit:
+      enabled: true
+      requests_per_minute: 100
+      burst: 20
+    
+  # CORS Settings
+  cors:
+    enabled: true
+    origins: ["*"]
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+    headers: ["Content-Type", "Authorization"]
+
+# Integration Configuration
+integrations:
+  # Prometheus Metrics
+  prometheus:
+    enabled: false
+    port: 9090
+    path: "/metrics"
+    
+  # Syslog Integration
+  syslog:
+    enabled: false
+    server: "localhost"
+    port: 514
+    facility: "local0"
+    
+  # Email Alerts
+  email:
+    enabled: false
+    smtp_server: "localhost"
+    smtp_port: 587
+    username: ""
+    password: ""
+    from_address: "qos-alerts@example.com"
+    
+  # Webhook Notifications
+  webhooks:
+    enabled: false
+    endpoints: []
+
+# Performance Configuration
+performance:
+  # Threading
+  threading:
+    max_workers: 10
+    queue_size: 1000
+    
+  # Caching
+  caching:
+    enabled: true
+    ttl: 300  # seconds
+    max_size: 1000
+    
+  # Memory Management
+  memory:
+    max_memory_mb: 512
+    gc_threshold: 400  # MB
+
+# Development Configuration
+development:
+  # Testing
+  testing:
+    mock_interfaces: true
+    sample_data: true
+    
+  # Debug Features
+  debug:
+    verbose_logging: false
+    profile_performance: false
+    save_debug_data: false
+
+# Backup and Recovery
+backup:
+  # Configuration Backup
+  config_backup:
+    enabled: true
+    interval_hours: 6
+    retention_days: 30
+    
+  # Data Backup
+  data_backup:
+    enabled: true
+    interval_hours: 12
+    retention_days: 7
+    compress: true
+
+# Advanced Features
+advanced:
+  # Machine Learning
+  machine_learning:
+    enabled: false
+    prediction_horizon: 24  # hours
+    retrain_interval: 168   # hours (1 week)
+    
+  # Custom Scripts
+  custom_scripts:
+    enabled: false
+    scripts_directory: "scripts"
+    
+  # External APIs
+  external_apis:
+    enabled: false
+    timeout: 30  # seconds
+    retry_attempts: 3
